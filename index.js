@@ -51,7 +51,6 @@ try {
   const repository = Core.getInput('repository')
   const token = Core.getInput('token')
   const step = Core.getInput('step')
-  
 
   const api = new Api(token, repository, false)
 
@@ -60,11 +59,11 @@ try {
   const stepInt = Number(step)
 
   if (!valueInt) {
-    throw new Error("Input 'currentBuildNumberValue' is not a number.")
+    throw new Error('Input "currentBuildNumberValue" is not a number.')
   }
 
   if (!stepInt) {
-    throw new Error("Input 'step' is not a number.")
+    throw new Error('Input "step" is not a number.')
   }
 
   // increase build number
