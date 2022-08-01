@@ -4,37 +4,26 @@ Increment build number as a secret in github repository
 
 ## Usage
 
-### Inputs
+## Inputs
 
-### name
+### buildNumberSecretName
 
-**Required** `String` Secret name.
+**Required** `String` Build number secret name.
 
-### value
+### currentBuildNumberValue
 
-**Required** `String` Secret value to store.
+**Required** `String` Current build number, the increment will be executed based on this value.
 
 
 ### token
 
-**Required** `String` Repository [Access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+**Required** `String` Repository access token (Github token)
 
 ### repository
 
-**Required** `String` Repository or organization to store. Default `github.repository` [context](https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
+**Required** `String` Repository to store. Default `github.repository` [context](https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context)
 
-### org
-
-`Boolean` Indicates the repo is an [organization](https://docs.github.com/en/github/setting-up-and-managing-organizations-and-teams/about-organizations). Default `false`
-
-### visibility
-
-`String` that configures the access that repositories have to the organization secret.
-Options are `all`, `private`, `selected`
-
-### selected_repository_ids
-
-### Outputs
+## Outputs
 
 ### status
 
@@ -46,38 +35,19 @@ Response json payload
 
 ## Examples
 
-### For personal repo
-
 ```YAML
 uses: Tiiik/build-number-incrementer@v1.0.0
 with:
-  name: 'MY_SECRET_NAME'
-  value: 'Lorem ipsun dolor simit'
+  buildNumberSecretName: 'MY_SECRET_NAME'
+  currentBuildNumberValue: 'Lorem ipsun dolor simit'
   repository: Tiiik/build-number-incrementer
-  token: ${{ secrets.REPO_ACCESS_TOKEN }}
+  token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### For organizations
-
-```YAML
-uses: Tiiik/increment-build-number@v1.0.0
-with:
-  name: 'MY_SECRET_NAME'
-  value: 'Lorem ipsun dolor simit'
-  repository: 'my-org'
-  token: ${{ secrets.REPO_ACCESS_TOKEN }}
-  org: true
-  visibility: 'all'
-```
 
 ## References
 
-### References for repository
+### References
 
 - [Get a repository public key](https://developer.github.com/v3/actions/secrets/#get-a-repository-public-key)
 - [Create or update repository secret](https://developer.github.com/v3/actions/secrets/#create-or-update-a-repository-secret)
-
-### References for organization
-
-- [Get an organization public key](https://developer.github.com/v3/actions/secrets/#get-an-organization-public-key)
-- [Create or update an organization secret](https://developer.github.com/v3/actions/secrets/#create-or-update-an-organization-secret)
