@@ -1,0 +1,39 @@
+name: 'Build Number Incrementer'
+
+author: Tiiik
+
+description: 'Increment build number as a secret in github repository'
+
+inputs:
+  buildNumberSecretName:
+    description: Build number secret name
+    required: true
+
+  currentBuildNumberValue:
+    description: Current build number, the increment will be executed based on this value.
+    required: true
+
+  step:
+    description: The amount for each increment.
+    default: '1'
+    required: false
+
+  repository:
+    description: Repository name
+    default: ${{ github.repository }}
+    required: false
+
+  token:
+    description: Repository access token (Github token)
+    required: true
+
+outputs:
+  code:
+    description: Status code
+
+  data:
+    description: Response data
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
